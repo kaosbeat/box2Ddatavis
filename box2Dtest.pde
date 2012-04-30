@@ -12,7 +12,8 @@ PBox2D box2d;
 // An ArrayList of particles that will fall on the surface
 ArrayList<Particle> particles;
 ArrayList<Surface> surfaces;
-
+PShape mapsvg;
+PShape[] wijklijst;
 
 // An object to store information about the uneven surface
 //Surface surface;
@@ -29,15 +30,20 @@ void setup() {
   // Create the empty list
   particles = new ArrayList<Particle>();
   // Create the surface
+  mapsvg = loadShape("gent.svg");
+  wijklijst = mapsvg.getChild("layer1").getChildren();
+  println(wijklijst);
   surfaces = new ArrayList<Surface>();
   //add surfaces
-    surfaces.add(new Surface("meulestede", 50));
-    surfaces.add(new Surface("muide", 0));
-    surfaces.add(new Surface("voormuide", 0));
-    surfaces.add(new Surface("afrika",0));
+    //surfaces.add(new Surface("meulestede", 50));
+   // surfaces.add(new Surface("muide", 0));
+   // surfaces.add(new Surface("voormuide", 0));
+    //surfaces.add(new Surface("afrika",0));
+    
+    surfaces.add(new Surface(wijklijst[0], 50));
   
   //preseed 
-  
+    
   for(int i=0;i<50;i++) {
     particles.add(new Particle(170,100,4));
   }
@@ -46,6 +52,10 @@ void setup() {
   for (Surface s: surfaces) {
     s.populate();
   }
+  
+  //geometry info on the ghentmap
+  
+
 }
 
 void draw() {
@@ -59,13 +69,16 @@ void draw() {
       Particle p = particles.get(0);
       particles.remove(0);
       p.killBody();
+      
+     // (wl[i].contains(10,150));
+      
     // p=null;
      
       //particles.get(0).killBody();
      //println(p);
      //println(p.body.killBody());
    // }
-
+    
   }
 
   // We must always step through time!
@@ -100,5 +113,7 @@ void draw() {
   // Just drawing the framerate to see how many particles it can handle
   fill(0);
   text("framerate: " + (int)frameRate,12,16);
+  fill(128);
+  rect(10,140,10,10);
 }
 

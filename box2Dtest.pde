@@ -14,6 +14,7 @@ ArrayList<Particle> particles;
 ArrayList<Surface> surfaces;
 PShape mapsvg;
 PShape[] wijklijst;
+Subshape testshape;
 
 // An object to store information about the uneven surface
 //Surface surface;
@@ -23,56 +24,36 @@ void setup() {
   smooth();
     // Initialize box2d physics and create the world
   controlsSetup ();
+
   box2d = new PBox2D(this);
   box2d.createWorld();
   // We are setting a custom gravity
-  box2d.setGravity(0, -20);
+  //box2d.setGravity(0, -20);
 
   // Create the empty list
   //particles = new ArrayList<Particle>();
   // Create the surface
   mapsvg = loadShape("gent.svg");
+      testshape = new Subshape(mapsvg.getChild("muide"), 0,0);
+      
   wijklijst = mapsvg.getChild("layer1").getChildren();
-  println(wijklijst);
-  
-  
-  surfaces = new ArrayList<Surface>();
-  //add surfaces
-    //surfaces.add(new Surface("meulestede", 50));
-   // surfaces.add(new Surface("muide", 0));
-   // surfaces.add(new Surface("voormuide", 0));
-    //surfaces.add(new Surface("afrika",0));
     
-    //for (PShape w: wijklijst) {
+  surfaces = new ArrayList<Surface>();
     for (int i=0;i<wijklijst.length;i++) {
-      //int i = wijklijst.getChildIndex(w);
-      //i = 5; 
-      //println(o);
       color c = i ;
-
-      //color c = color(112,145,10);
       surfaces.add(new Surface(wijklijst[i], 50,c));
       println("adding" +wijklijst[i].getName()+ "with color: " + c);
     }
   
-  //preseed 
-    
-  //for(int i=0;i<50;i++) {
-    //particles.add(new Particle(170,100,4));
-    
- // }
-  
-  
   for (Surface s: surfaces) {
     s.populate();
   }
-  
-  //geometry info on the ghentmap
-  
 
 }
 
 void draw() {
+
+
   // If the mouse is pressed, we make new particles
   if (mousePressed) {
     //float sz = random(2,6);
@@ -97,7 +78,7 @@ void draw() {
   // We must always step through time!
   box2d.step();
   background(255);
-
+  
   // Draw the surfaces and local particles
   for (Surface s: surfaces) {
       s.display();
@@ -111,9 +92,7 @@ void draw() {
   //for (Particle p: particles) {
   //  p.display();
 // }
-  
- 
-
+  testshape.display();
   // Particles that leave the screen, we delete them
   // (note they have to be deleted from both the box2d world and our list
  // for (int i = particles.size()-1; i >= 0; i--) {

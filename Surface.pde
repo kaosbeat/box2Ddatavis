@@ -56,9 +56,13 @@ class Surface {
   
   void populate() {
     println("populating");
+    float xx = surface.get(surface.size()-1).x - surface.get(floor(surface.size()/2)).x;
+    println(xx);
+    float yy = surface.get(surface.size()-1).y - surface.get(floor(surface.size()/2)).y;
+    println(yy);
     particles = new ArrayList<Particle>();
-    for(int i=0;i<50;i++) {
-      particles.add(new Particle(170,10,4));
+    for(int i=0;i<num2007[0]/10000;i++) {
+      particles.add(new Particle(160,280,4));
            
     } 
   }

@@ -11,26 +11,41 @@ class Surface {
     ArrayList<Particle> particles;
     ArrayList<Vec2> surface;
     PShape wijksvg;
-    PShape mapsvg;
+ 
+    PShape w;
     int particlenumber;
 
   Surface() {
-    mapsvg = loadShape("gent.svg");
-    wijksvg = mapsvg.getChild("blah");
-    particles = new ArrayList<Particle>();
+    //mapsvg = loadShape("gent.svg");
+   // wijksvg = mapsvg.getChild("blah");
+//particles = new ArrayList<Particle>();
    //particles = 
 
    
   
   }
   
-  Surface(String wijk, int particlenumber) {  
+  Surface(PShape wijk, int particlenumber) {  
 
-    mapsvg = loadShape("gent.svg");
-    println("drawing "+wijk);
-    wijksvg = mapsvg.getChild(wijk);
+    
+    //println("drawing "+mapsvg.getChildCount());
+    //wijksvg = mapsvg.getChild(wijk);
+    wijksvg = wijk;
+    for (int i = 0;i < mapsvg.getChild("layer1").getChildCount();i++) {
+     //println(wl[i].contains(10,150));
+      
+   
+    }
+   
+
+
+   // wijksvg
     //wijksvg.scale(2.0);
-    println(wijksvg.width);
+    //redraw wijksvg as a fresh object
+    //w = new PShape;
+    
+    
+    //println(wijksvg.getWidth());
     surface = new ArrayList<Vec2>();
     
     // This is what box2d uses to put the surface in its world
@@ -38,6 +53,7 @@ class Surface {
       for(int i=0; i < wijksvg.getVertexCount();i++) {
         surface.add(new Vec2(wijksvg.getVertexX(i),wijksvg.getVertexY(i)));
         //println("added one" +wijksvg.getVertexX(i));
+       
       }
 
     
@@ -69,12 +85,11 @@ class Surface {
     stroke(0);
    // fill(145,125,3);
    // shape(wijksvg,0,0);
+   
     beginShape();
-    
-    
-    for (Vec2 v: surface) {
+     for (Vec2 v: surface) {
       vertex(v.x,v.y);
-    }
+     }
    
     
     

@@ -8,10 +8,26 @@ class Surface {
     int particlenumber;
     color c;
     int year;
+    color fillColor;
+    color strokeColor;
+    PShape svgChildNode;
+    float x;
+    float y;
+    PShape shape;
+    float bigX = 0;
+    float bigY = 0;
+    float litX = 0;
+    float litY = 0;
+    Vec2[] bbox;
 
   Surface() {
     //default Surface isn't very interesting, a bit superficial
-    
+    fillColor = color(255,0,255);
+    strokeColor  = color(0,255,255);
+    this.svgChildNode = svgChildNode;
+    this.x = x;
+    this.y = y;
+    this.bbox = boundingBox();
   }
   
   Surface(PShape wijk, int particlenumber, color c) {
@@ -44,18 +60,35 @@ class Surface {
   body.createFixture(chain,1);
   }
   
+  Vec2[] boundingBox(){
+    float _x = 0;
+    float _y = 0;
+    for (int i = 0; i < wijksvg.getVertexCount(); i++) {
+      _x = wijksvg.getVertexX(i);
+      _y = wijksvg.getVertexY(i);
+      if (_x > bigX){bigX = _x;}
+      if (_x < litX){litX = _x;}
+      if (_y > bigY){bigY = _y;}
+      if (_y < litY){litY = _y;}
+    }
+    //println("returning fancy vectorlists");
+    Vec2[] bbox = {new Vec2(litX, litY), new Vec2(bigX-litX,bigY-litY)};
+    return bbox;
+  }
+  
+  
+  
+  
+  
   void display() {
     strokeWeight(2);
-    //stroke(0);
-    
-    fill(c);
-/*    beginShape();  
-     for (Vec2 v: surface) {
-      vertex(v.x,v.y);
+    fill(255,255,0);
+    stroke(128);
+    beginShape();
+    for (int i = 0; i < wijksvg.getVertexCount(); i++) {
+     vertex(x+wijksvg.getVertexX(i),y+wijksvg.getVertexY(i));  
     }
     endShape();
-*/
-
 
 
   }

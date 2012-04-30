@@ -34,21 +34,31 @@ void setup() {
   wijklijst = mapsvg.getChild("layer1").getChildren();
   println(wijklijst);
   
+  
   surfaces = new ArrayList<Surface>();
   //add surfaces
     //surfaces.add(new Surface("meulestede", 50));
    // surfaces.add(new Surface("muide", 0));
    // surfaces.add(new Surface("voormuide", 0));
     //surfaces.add(new Surface("afrika",0));
-    for (PShape w: wijklijst) {
-      surfaces.add(new Surface(w, 50));
-      println("adding" +w.getName());
+    
+    //for (PShape w: wijklijst) {
+    for (int i=0;i<wijklijst.length;i++) {
+      //int i = wijklijst.getChildIndex(w);
+      //i = 5; 
+      //println(o);
+      color c = i ;
+
+      //color c = color(112,145,10);
+      surfaces.add(new Surface(wijklijst[i], 50,c));
+      println("adding" +wijklijst[i].getName()+ "with color: " + c);
     }
   
   //preseed 
     
   for(int i=0;i<50;i++) {
     particles.add(new Particle(170,100,4));
+    
   }
   
   
@@ -114,7 +124,7 @@ void draw() {
   }
 
   // Just drawing the framerate to see how many particles it can handle
-  fill(0);
+ // fill(0);
   text("framerate: " + (int)frameRate,12,16);
   fill(128);
   rect(10,140,10,10);

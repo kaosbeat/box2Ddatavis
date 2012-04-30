@@ -33,14 +33,17 @@ void setup() {
   mapsvg = loadShape("gent.svg");
   wijklijst = mapsvg.getChild("layer1").getChildren();
   println(wijklijst);
+  
   surfaces = new ArrayList<Surface>();
   //add surfaces
     //surfaces.add(new Surface("meulestede", 50));
    // surfaces.add(new Surface("muide", 0));
    // surfaces.add(new Surface("voormuide", 0));
     //surfaces.add(new Surface("afrika",0));
-    
-    surfaces.add(new Surface(wijklijst[0], 50));
+    for (PShape w: wijklijst) {
+      surfaces.add(new Surface(w, 50));
+      println("adding" +w.getName());
+    }
   
   //preseed 
     

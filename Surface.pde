@@ -27,7 +27,7 @@ class Surface {
     this.svgChildNode = svgChildNode;
     this.x = x;
     this.y = y;
-    this.bbox = boundingBox();
+    
   }
   
   Surface(PShape wijk, int particlenumber, color c) {
@@ -58,11 +58,18 @@ class Surface {
   // Shortcut, we could define a fixture if we
   // want to specify frictions, restitution, etc.
   body.createFixture(chain,1);
+  
+  //calculate bbox
+  this.bbox = boundingBox();
   }
   
   Vec2[] boundingBox(){
     float _x = 0;
+    bigX = wijksvg.getVertexX(0);
+    litX = bigX;
     float _y = 0;
+    litY = wijksvg.getVertexY(0);
+    bigY = litY;
     for (int i = 0; i < wijksvg.getVertexCount(); i++) {
       _x = wijksvg.getVertexX(i);
       _y = wijksvg.getVertexY(i);
@@ -82,7 +89,7 @@ class Surface {
   
   void display() {
     strokeWeight(2);
-    fill(255,255,0);
+    fill(255,255,0,128);
     stroke(128);
     beginShape();
     for (int i = 0; i < wijksvg.getVertexCount(); i++) {
@@ -94,16 +101,14 @@ class Surface {
   }
   
   void populate(int year) {
-    println("populating");
-    float xx = surface.get(surface.size()-1).x - surface.get(floor(surface.size()/2)).x;
-    println(xx);
-    float yy = surface.get(surface.size()-1).y - surface.get(floor(surface.size()/2)).y;
-    println(yy);
+    float x = (this.bbox[1].x - this.bbox[0].x)/2 + this.bbox[0].x;
+    float y = (this.bbox[1].y - this.bbox[0].y)/2 + this.bbox[0].y;
+    println("populating " + x +"," + y);
     particles = new ArrayList<Particle>();
-    for(int i=0;i<num1999[0]/10000;i++) {
-      particles.add(new Particle(160,280,4));
-           
+    for(int i=0;i<1;i++) {
+      particles.add(new Particle(x,y,4));
     } 
+   // particles.add(new Particle(50,50,4));
   }
   
 

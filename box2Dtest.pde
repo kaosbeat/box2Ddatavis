@@ -14,8 +14,6 @@ ArrayList<Particle> particles;
 ArrayList<Surface> surfaces;
 PShape mapsvg;
 PShape[] wijklijst;
-//ArrayList<Subshape> subshapes;
-Subshape testshape;
 
 // An object to store information about the uneven surface
 //Surface surface;
@@ -82,27 +80,29 @@ void draw() {
   // Draw the surfaces and local particles
   for (Surface s: surfaces) {
       s.display();
+      float x = (s.bbox[1].x - s.bbox[0].x)/2 + s.bbox[0].x;
+      float y = (s.bbox[1].y - s.bbox[0].y)/2 + s.bbox[0].y;
+      rect(x,y,20,20);
+
       for (Particle p: s.particles) {
         p.display();
+        
       }
-     // println(s.particles);
+//      for (int i = s.particles.size()-1; i >= 0; i--) {
+//        Particle p = s.particles.get(i);
+//        
+//        
+//       }
+      
+      //println(s.particles);
+      
+      
   
   }
-  // Draw all (global) particles
-  //for (Particle p: particles) {
-  //  p.display();
-// }
- // for (Subshape s: subshapes) {
- //   s.display();
- // }
+
   // Particles that leave the screen, we delete them
   // (note they have to be deleted from both the box2d world and our list
- // for (int i = particles.size()-1; i >= 0; i--) {
-   // Particle p = particles.get(i);
-    //if (p.done()) {
-   //   particles.remove(i);
-   // }
- // }
+   
 
   // Just drawing the framerate to see how many particles it can handle
  // fill(0);

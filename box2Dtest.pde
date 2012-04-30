@@ -18,7 +18,7 @@ ArrayList<Surface> surfaces;
 //Surface surface;
 
 void setup() {
-  size(500,300);
+  size(300,500);
   smooth();
     // Initialize box2d physics and create the world
   box2d = new PBox2D(this);
@@ -34,7 +34,7 @@ void setup() {
     surfaces.add(new Surface("meulestede", 50));
     surfaces.add(new Surface("muide", 0));
     surfaces.add(new Surface("voormuide", 0));
-   // surfaces.add(new Surface("afrika"));
+    surfaces.add(new Surface("afrika",0));
   
   //preseed 
   
@@ -78,15 +78,15 @@ void draw() {
       for (Particle p: s.particles) {
         p.display();
       }
-      println(s.particles);
-  //println(surface.mapsvg.height);
+     // println(s.particles);
+  
   }
   // Draw all (global) particles
   for (Particle p: particles) {
     p.display();
   }
   
-  
+ 
 
   // Particles that leave the screen, we delete them
   // (note they have to be deleted from both the box2d world and our list

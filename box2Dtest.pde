@@ -22,13 +22,14 @@ void setup() {
   size(300,500);
   smooth();
     // Initialize box2d physics and create the world
+  controlsSetup ();
   box2d = new PBox2D(this);
   box2d.createWorld();
   // We are setting a custom gravity
   box2d.setGravity(0, -20);
 
   // Create the empty list
-  particles = new ArrayList<Particle>();
+  //particles = new ArrayList<Particle>();
   // Create the surface
   mapsvg = loadShape("gent.svg");
   wijklijst = mapsvg.getChild("layer1").getChildren();
@@ -56,10 +57,10 @@ void setup() {
   
   //preseed 
     
-  for(int i=0;i<50;i++) {
-    particles.add(new Particle(170,100,4));
+  //for(int i=0;i<50;i++) {
+    //particles.add(new Particle(170,100,4));
     
-  }
+ // }
   
   
   for (Surface s: surfaces) {
@@ -77,11 +78,10 @@ void draw() {
     //float sz = random(2,6);
    // particles.add(new Particle(mouseX,mouseY,sz));
    //for (Particle p: particles)  {
-      println(particles.size());
       //destroyBody(p.body);
-      Particle p = particles.get(0);
-      particles.remove(0);
-      p.killBody();
+      //Particle p = particles.get(0);
+      //particles.remove(0);
+      //p.killBody();
       
      // (wl[i].contains(10,150));
       
@@ -108,20 +108,20 @@ void draw() {
   
   }
   // Draw all (global) particles
-  for (Particle p: particles) {
-    p.display();
-  }
+  //for (Particle p: particles) {
+  //  p.display();
+// }
   
  
 
   // Particles that leave the screen, we delete them
   // (note they have to be deleted from both the box2d world and our list
-  for (int i = particles.size()-1; i >= 0; i--) {
-    Particle p = particles.get(i);
+ // for (int i = particles.size()-1; i >= 0; i--) {
+   // Particle p = particles.get(i);
     //if (p.done()) {
    //   particles.remove(i);
    // }
-  }
+ // }
 
   // Just drawing the framerate to see how many particles it can handle
  // fill(0);

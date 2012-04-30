@@ -6,7 +6,8 @@ class Surface {
     PShape wijksvg;
     PShape w;
     int particlenumber;
-    color c; 
+    color c;
+    int year;
 
   Surface() {
     //default Surface isn't very interesting, a bit superficial
@@ -17,6 +18,7 @@ class Surface {
     this.c = color(random(255),random(255),random(255));
     wijksvg = wijk;
     surface = new ArrayList<Vec2>();
+    year = year();
     // This is what box2d uses to put the surface in its world
     
     ChainShape chain = new ChainShape();
@@ -47,21 +49,25 @@ class Surface {
     //stroke(0);
     
     fill(c);
-    beginShape();  
+/*    beginShape();  
      for (Vec2 v: surface) {
       vertex(v.x,v.y);
     }
     endShape();
+*/
+
+
+
   }
   
-  void populate() {
+  void populate(int year) {
     println("populating");
     float xx = surface.get(surface.size()-1).x - surface.get(floor(surface.size()/2)).x;
     println(xx);
     float yy = surface.get(surface.size()-1).y - surface.get(floor(surface.size()/2)).y;
     println(yy);
     particles = new ArrayList<Particle>();
-    for(int i=0;i<num2007[0]/10000;i++) {
+    for(int i=0;i<num1999[0]/10000;i++) {
       particles.add(new Particle(160,280,4));
            
     } 

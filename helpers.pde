@@ -22,6 +22,7 @@ class Subshape {
     this.x = x;
     this.y = y;
     this.bbox = boundingBox();
+    
   }
   
   Vec2[] boundingBox(){

@@ -14,6 +14,7 @@ ArrayList<Particle> particles;
 ArrayList<Surface> surfaces;
 PShape mapsvg;
 PShape[] wijklijst;
+ArrayList<Subshape> subshapes;
 Subshape testshape;
 
 // An object to store information about the uneven surface
@@ -34,19 +35,18 @@ void setup() {
   //particles = new ArrayList<Particle>();
   // Create the surface
   mapsvg = loadShape("gent.svg");
-      testshape = new Subshape(mapsvg.getChild("muide"), 0,0);
-      
   wijklijst = mapsvg.getChild("layer1").getChildren();
-    
   surfaces = new ArrayList<Surface>();
+  subshapes = new ArrayList<Subshape>();
     for (int i=0;i<wijklijst.length;i++) {
       color c = i ;
       surfaces.add(new Surface(wijklijst[i], 50,c));
+      subshapes.add(new Subshape(mapsvg.getChild(wijklijst[i].getName()), 0,0));
       println("adding" +wijklijst[i].getName()+ "with color: " + c);
     }
   
   for (Surface s: surfaces) {
-    s.populate();
+    s.populate(year());
   }
 
 }
@@ -92,7 +92,9 @@ void draw() {
   //for (Particle p: particles) {
   //  p.display();
 // }
-  testshape.display();
+  for (Subshape s: subshapes) {
+    s.display();
+  }
   // Particles that leave the screen, we delete them
   // (note they have to be deleted from both the box2d world and our list
  // for (int i = particles.size()-1; i >= 0; i--) {

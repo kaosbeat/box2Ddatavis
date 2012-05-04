@@ -10,9 +10,11 @@ class Particle {
   // We need to keep track of a Body and a radius
   Body body;
   float r;
-
+  color c;
+  
   Particle(float x, float y, float r_) {
     r = r_;
+    c = color(random(255),random(255),random(255));
     // This function puts the particle in the Box2d world
     makeBody(x,y,r);
   }
@@ -32,7 +34,7 @@ class Particle {
     pushMatrix();
     translate(pos.x,pos.y);
     rotate(-a);
-    fill(175);
+    fill(c);
     stroke(0);
     strokeWeight(1);
     ellipse(0,0,r*2,r*2);

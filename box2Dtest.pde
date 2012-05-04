@@ -56,12 +56,13 @@ void draw() {
   if (mousePressed) {
     //float sz = random(2,6);
    // particles.add(new Particle(mouseX,mouseY,sz));
-   //for (Particle p: particles)  {
-      //destroyBody(p.body);
-      //Particle p = particles.get(0);
-      //particles.remove(0);
-      //p.killBody();
-      
+     for (Surface s: surfaces)  {
+      if( s.particles.size() > 0 ){
+        Particle p = s.particles.get(0);
+        s.particles.remove(0);
+        p.killBody();
+      }
+     }
      // (wl[i].contains(10,150));
       
     // p=null;

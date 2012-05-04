@@ -70,16 +70,19 @@ class Surface {
     float _y = 0;
     litY = wijksvg.getVertexY(0);
     bigY = litY;
+    //println("CALCULATING BOUNDINGBOX");
     for (int i = 0; i < wijksvg.getVertexCount(); i++) {
       _x = wijksvg.getVertexX(i);
       _y = wijksvg.getVertexY(i);
+      //println (_y);
       if (_x > bigX){bigX = _x;}
       if (_x < litX){litX = _x;}
       if (_y > bigY){bigY = _y;}
       if (_y < litY){litY = _y;}
     }
     //println("returning fancy vectorlists");
-    Vec2[] bbox = {new Vec2(litX, litY), new Vec2(bigX-litX,bigY-litY)};
+    //println(litY +","+ bigY);
+    Vec2[] bbox = {new Vec2(litX, litY), new Vec2(bigX,bigY)};
     return bbox;
   }
   
@@ -105,10 +108,9 @@ class Surface {
     float y = (this.bbox[1].y - this.bbox[0].y)/2 + this.bbox[0].y;
     println("populating " + x +"," + y);
     particles = new ArrayList<Particle>();
-    for(int i=0;i<1;i++) {
-      particles.add(new Particle(x,y,4));
+    for(int i=0;i<10;i++) {
+      particles.add(new Particle(x,y,4,c));
     } 
-   // particles.add(new Particle(50,50,4));
   }
   
 

@@ -12,9 +12,10 @@ class Particle {
   float r;
   color c;
   
-  Particle(float x, float y, float r_) {
+  Particle(float x, float y, float r_, color c_) {
     r = r_;
-    c = color(random(255),random(255),random(255));
+    //c = color(random(255),random(255),random(255));
+    c = c_;
     // This function puts the particle in the Box2d world
     makeBody(x,y,r);
   }

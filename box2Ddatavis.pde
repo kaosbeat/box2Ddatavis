@@ -16,7 +16,7 @@ color backgroundColor;
 
 void setup() {
   size(300,500);
-  backgroundColor = color(0);
+  backgroundColor = color(255);
   smooth();
     // Initialize box2d physics and create the world
   controlsSetup ();
@@ -44,6 +44,7 @@ void setup() {
 void draw() {
 
   // If the mouse is pressed, we make new particles
+  /*
   if (mousePressed) {
     //float sz = random(2,6);
    // particles.add(new Particle(mouseX,mouseY,sz));
@@ -72,7 +73,7 @@ void draw() {
    // }
     
   }
-
+  */
   // We must always step through time!
   box2d.step();
   background(backgroundColor);
@@ -118,9 +119,40 @@ void draw() {
 
 void kids(boolean kidstoggle) {
   if(kidstoggle==true) {
-   backgroundColor = color(255);
+  // backgroundColor = color(255);
+    for (Surface s: surfaces)  {
+      if( s.particles.size() > 0 ){
+        //Particle p = s.particles.get(0);
+        //s.particles.remove(0);
+        //p.killBody();
+        for (Particle p: s.particles){
+          p.r = 5;
+          Vec2 pos = box2d.getBodyPixelCoord(p.body);
+          p.killBody();
+          p.makeBody(pos.x,pos.y,p.r);
+         
+        
+        }
+      }
+     }
+   
   } else {
-   backgroundColor = color(0);
+   //backgroundColor = color(0);
+       for (Surface s: surfaces)  {
+      if( s.particles.size() > 0 ){
+        //Particle p = s.particles.get(0);
+        //s.particles.remove(0);
+        //p.killBody();
+        for (Particle p: s.particles){
+          p.r = 3;
+          Vec2 pos = box2d.getBodyPixelCoord(p.body);
+          p.killBody();
+          p.makeBody(pos.x,pos.y,p.r);
+         
+        
+        }
+      }
+     }
   }
   println("a toggle event.");
 }

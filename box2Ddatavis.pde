@@ -48,9 +48,17 @@ void draw() {
    // particles.add(new Particle(mouseX,mouseY,sz));
      for (Surface s: surfaces)  {
       if( s.particles.size() > 0 ){
-        Particle p = s.particles.get(0);
-        s.particles.remove(0);
-        p.killBody();
+        //Particle p = s.particles.get(0);
+        //s.particles.remove(0);
+        //p.killBody();
+        for (Particle p: s.particles){
+          p.r++;
+          Vec2 pos = box2d.getBodyPixelCoord(p.body);
+          p.killBody();
+          p.makeBody(pos.x,pos.y,p.r);
+         
+        
+        }
       }
      }
      // (wl[i].contains(10,150));
@@ -77,7 +85,7 @@ void draw() {
       fill(255,0,0,128);
       //println (Sy);
 
-      rect(s.bbox[0].x,s.bbox[0].y,Sx,Sy);
+      //rect(s.bbox[0].x,s.bbox[0].y,Sx,Sy);
       popMatrix();
       for (Particle p: s.particles) {
         p.display();

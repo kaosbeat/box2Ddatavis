@@ -108,7 +108,7 @@ class Surface {
     float y = (this.bbox[1].y - this.bbox[0].y)/2 + this.bbox[0].y;
     println("populating " + x +"," + y);
     particles = new ArrayList<Particle>();
-    for(int i=0;i<10;i++) {
+    for(int i=0;i<50;i++) {
       particles.add(new Particle(x,y,4,c));
     } 
   }

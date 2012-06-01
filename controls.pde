@@ -1,18 +1,20 @@
 import controlP5.*;
 ControlP5 controlP5;
 CheckBox checkbox;
+Toggle kids;
 
 
 
 void controlsSetup(){
   controlP5 = new ControlP5(this);
   checkbox = controlP5.addCheckBox("checkBox",260,20); 
- 
+  kids = controlP5.addToggle("kids",false,250,160,10,10);
+  kids.setColorLabel(color(128));
+
   // make adjustments to the layout of a checkbox.
   checkbox.setColorBackground(color(10));
   checkbox.setColorForeground(color(120));
   checkbox.setColorActive(color(255,25,20));
-  checkbox.setColorLabel(color(128));
   checkbox.setItemsPerRow(1);
   checkbox.setSpacingColumn(30);
   checkbox.setSpacingRow(10);

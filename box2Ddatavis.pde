@@ -12,9 +12,11 @@ ArrayList<Particle> particles;
 ArrayList<Surface> surfaces;
 PShape mapsvg;
 PShape[] wijklijst;
+color backgroundColor;
 
 void setup() {
   size(300,500);
+  backgroundColor = color(0);
   smooth();
     // Initialize box2d physics and create the world
   controlsSetup ();
@@ -40,7 +42,6 @@ void setup() {
 }
 
 void draw() {
-
 
   // If the mouse is pressed, we make new particles
   if (mousePressed) {
@@ -74,7 +75,7 @@ void draw() {
 
   // We must always step through time!
   box2d.step();
-  background(255);
+  background(backgroundColor);
   
   // Draw the surfaces and local particles
   for (Surface s: surfaces) {
@@ -114,3 +115,12 @@ void draw() {
   //rect(10,140,10,10);
 }
 
+
+void kids(boolean kidstoggle) {
+  if(kidstoggle==true) {
+   backgroundColor = color(255);
+  } else {
+   backgroundColor = color(0);
+  }
+  println("a toggle event.");
+}

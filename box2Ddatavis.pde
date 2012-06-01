@@ -129,7 +129,7 @@ void kids(boolean kidstoggle) {
         //p.killBody();
         for (Particle p: s.particles){
           if (kids > 0) {
-            p.r = 3+(builtarea[index]*10/100);
+            p.r = 3+(builtarea[index]*spaceImportance/1000);
             Vec2 pos = box2d.getBodyPixelCoord(p.body);
             p.killBody();
             p.makeBody(pos.x,pos.y,p.r);

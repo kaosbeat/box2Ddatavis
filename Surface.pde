@@ -104,12 +104,16 @@ class Surface {
   }
   
   void populate(int year) {
-    float x = (this.bbox[1].x - this.bbox[0].x)/2 + this.bbox[0].x;
+    float x = (this.bbox[1].x - this.bbox[0].x)/2 +5 + this.bbox[0].x;
     float y = (this.bbox[1].y - this.bbox[0].y)/2 + this.bbox[0].y;
-    println("populating " + x +"," + y);
     particles = new ArrayList<Particle>();
-    for(int i=0;i<50;i++) {
-      particles.add(new Particle(x,y,4,c));
+    int index = Arrays.binarySearch(namemap, wijksvg.getName() );
+    //System.out.println (index);
+    
+    println("populating "+  wijksvg.getName() + " " + x +"," + y + ", " + num2011[index]/20);
+
+    for(int i=0;i<num2011[index]/20;i++) {
+      particles.add(new Particle(x,y,3,c));
     } 
   }
   

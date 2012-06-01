@@ -121,15 +121,20 @@ void kids(boolean kidstoggle) {
   if(kidstoggle==true) {
   // backgroundColor = color(255);
     for (Surface s: surfaces)  {
+      int index = Arrays.binarySearch(namemap, s.wijksvg.getName() );
       if( s.particles.size() > 0 ){
+        float kids = min20_2011[index]/20;
         //Particle p = s.particles.get(0);
         //s.particles.remove(0);
         //p.killBody();
         for (Particle p: s.particles){
-          p.r = 5;
-          Vec2 pos = box2d.getBodyPixelCoord(p.body);
-          p.killBody();
-          p.makeBody(pos.x,pos.y,p.r);
+          if (kids > 0) {
+            p.r = 3+(builtarea[index]*10/100);
+            Vec2 pos = box2d.getBodyPixelCoord(p.body);
+            p.killBody();
+            p.makeBody(pos.x,pos.y,p.r);
+            kids--;
+          }
          
         
         }
